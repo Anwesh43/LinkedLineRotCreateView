@@ -31,14 +31,20 @@ fun Canvas.drawCreateRotLine(i : Int, scale : Float, w : Float, paint : Paint) {
     val sf : Float = scale.sinify().divideScale(i, lines)
     val sf1 : Float = sf.divideScale(0, 2)
     val sf2 : Float = sf.divideScale(1, 2)
+    if (sf <= 0f) {
+        return
+    }
     save()
+    translate(gap * (i + 1), 0f)
     rotate(deg * sf2)
     drawLine(0f, 0f, 0f, -gap * sf1, paint)
     restore()
 }
 
 fun Canvas.drawCreateRotLines(scale : Float, w : Float, paint : Paint) {
-    for (j in 0..(lines - 1)) {
+    val scDiv : Double = 1.0 / lines
+    val k : Int = Math.floor(scale.sinify() / scDiv).toInt()
+    for (j in 0..k) {
         drawCreateRotLine(j, scale, w, paint)
     }
 }
