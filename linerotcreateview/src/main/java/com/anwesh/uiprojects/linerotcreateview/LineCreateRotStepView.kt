@@ -55,3 +55,21 @@ fun Canvas.drawLCRSNode(i : Int, scale : Float, paint : Paint) {
     drawCreateRotLines(scale, w, paint)
     restore()
 }
+
+class LineCreateRotStepView(ctx : Context) : View(ctx) {
+
+    private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN ->  {
+
+            }
+        }
+        return true
+    }
+}
