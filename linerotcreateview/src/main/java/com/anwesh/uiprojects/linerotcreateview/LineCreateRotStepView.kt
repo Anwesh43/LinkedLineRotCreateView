@@ -186,4 +186,26 @@ class LineCreateRotStepView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineCreateRotStepView) {
+
+        private val lcrs : LineCreateRotStep = LineCreateRotStep(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            lcrs.draw(canvas, paint)
+            animator.animate {
+                lcrs.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lcrs.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
